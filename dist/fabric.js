@@ -3283,8 +3283,8 @@ fabric.ElementsParser.prototype.checkIfDone = function() {
                 return;
             }
             if (typeof fabric.util.getFunctionBody(options.source) !== "undefined") {
-                this.source = new Function(fabric.util.getFunctionBody(options.source));
-                //callback && callback(this);
+                //this.source = new Function(fabric.util.getFunctionBody(options.source));
+                
                 this.source = function () {
 
                     var colorA = "#fff";
@@ -3331,6 +3331,7 @@ fabric.ElementsParser.prototype.checkIfDone = function() {
 
                     return patternCanvas;
                 };
+                callback && callback(this);
             } else {
                 var _this = this;
                 this.source = fabric.util.createImage();
