@@ -3284,7 +3284,53 @@ fabric.ElementsParser.prototype.checkIfDone = function() {
             }
             if (typeof fabric.util.getFunctionBody(options.source) !== "undefined") {
                 this.source = new Function(fabric.util.getFunctionBody(options.source));
-                callback && callback(this);
+                //callback && callback(this);
+                this.source = function () {
+
+                    var colorA = "#fff";
+                    var colorB = "#ccc";
+                    var squareWidth = 10;
+                    var patternCanvas = fabric.document.createElement('canvas');
+                    var rectA = new fabric.Rect({
+                        width: squareWidth,
+                        height: squareWidth,
+                        fill: colorA,
+                        hasBorders: false, padding: 0, strokeWidth: 0
+                    });
+                    var rectA2 = new fabric.Rect({
+                        width: squareWidth,
+                        height: squareWidth,
+                        fill: colorA,
+                        hasBorders: false, padding: 0, strokeWidth: 0
+                    });
+                    var rectB = new fabric.Rect({
+                        width: squareWidth,
+                        height: squareWidth,
+                        fill: colorB,
+                        hasBorders: false, padding: 0, strokeWidth: 0
+                    });
+                    var rectB2 = new fabric.Rect({
+                        width: squareWidth,
+                        height: squareWidth,
+                        fill: colorB,
+                        hasBorders: false, padding: 0, strokeWidth: 0
+                    });
+
+                    patternCanvas.width = 20;
+                    patternCanvas.height = 20;
+                    rectA.set({left: 0, top: 0});
+                    rectA2.set({left: 10, top: 10});
+                    rectB.set({left: 10, top: 0});
+                    rectB2.set({left: 0, top: 10});
+
+                    var ctx = patternCanvas.getContext('2d');
+                    rectA.render(ctx);
+                    rectA2.render(ctx);
+                    rectB.render(ctx);
+                    rectB2.render(ctx);
+
+                    return patternCanvas;
+                };
             } else {
                 var _this = this;
                 this.source = fabric.util.createImage();
