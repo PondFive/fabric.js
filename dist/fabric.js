@@ -238,7 +238,7 @@ fabric.CommonMethods = {
         }
         var functionBody = fabric.util.getFunctionBody(options.clipTo);
         if (typeof functionBody !== "undefined") {
-            this.clipTo = new Function("ctx", functionBody);
+            alert("We removed this eval");
         }
     },
     _setObject: function(obj) {
